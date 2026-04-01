@@ -34,9 +34,11 @@ jobs:
           
       - name: Install ossutil
         run: |
-          wget -O /tmp/ossutil http://gosspublic.alicdn.com/ossutil/ossutil-linux-current64
+          wget -O /tmp/ossutil.tar.gz https://gosspublic.alicdn.com/ossutil/ossutil-linux-current64.tar.gz
+          tar -xzf /tmp/ossutil.tar.gz -C /tmp
           chmod +x /tmp/ossutil
           sudo mv /tmp/ossutil /usr/local/bin/ossutil
+          ossutil version
           
       - name: Configure Aliyun OSS credentials
         env:
