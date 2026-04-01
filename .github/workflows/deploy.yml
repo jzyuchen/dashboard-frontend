@@ -36,8 +36,8 @@ jobs:
         run: |
           wget -O /tmp/ossutil.zip "https://gosspublic.alicdn.com/ossutil/1.7.19/ossutil-v1.7.19-linux-amd64.zip?spm=a2c4g.11186623.0.0.123b2400hh2MXp&file=ossutil-v1.7.19-linux-amd64.zip"
           unzip -o /tmp/ossutil.zip -d /tmp
-          chmod +x /tmp/ossutil
-          sudo mv /tmp/ossutil /usr/local/bin/ossutil
+          chmod +x /tmp/ossutil-v1.7.19-linux-amd64/ossutil
+          sudo mv /tmp/ossutil-v1.7.19-linux-amd64/ossutil /usr/local/bin/ossutil
           ossutil version
           
       - name: Configure Aliyun OSS credentials
