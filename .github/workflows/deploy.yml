@@ -40,24 +40,14 @@ jobs:
           sudo mv /tmp/ossutil-v1.7.19-linux-amd64/ossutil /usr/local/bin/ossutil
           ossutil help | head -20
           
-      - name: Configure Aliyun OSS credentials
+      - name: Deploy to Aliyun OSS
         env:
           ALI_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
           ALI_ACCESS_KEY_SECRET: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
-        run: |
-          cat > ~/.ossutilconfig << EOF
-          [credentials]
-          language=EN
-          accessKeyID=${ALI_ACCESS_KEY_ID}
-          accessKeySecret=${ALI_ACCESS_KEY_SECRET}
-          EOF
-          
-      - name: Deploy to Aliyun OSS
-        env:
           OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
           OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
         run: |
-          ossutil cp -rf dist/ oss://${OSS_BUCKET}/ --endpoint=${OSS_ENDPOINT} --force
+          ossutil cp -rf dist/ oss://${OSS_BUCKET}/ --endpoint=${OSS_ENDPOINT} --force -i ${ALI_ACCESS_KEY_ID} -k ${ALI_ACCESS_KEY_SECRET}
           
       - name: Display website URL
         run: |
