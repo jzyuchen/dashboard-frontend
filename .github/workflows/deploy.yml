@@ -34,8 +34,8 @@ jobs:
           
       - name: Install ossutil
         run: |
-          wget -O /tmp/ossutil.tar.gz https://gosspublic.alicdn.com/ossutil/ossutil-linux-current64.tar.gz
-          tar -xzf /tmp/ossutil.tar.gz -C /tmp
+          wget -O /tmp/ossutil.zip "https://gosspublic.alicdn.com/ossutil/1.7.19/ossutil-v1.7.19-linux-amd64.zip?spm=a2c4g.11186623.0.0.123b2400hh2MXp&file=ossutil-v1.7.19-linux-amd64.zip"
+          unzip -o /tmp/ossutil.zip -d /tmp
           chmod +x /tmp/ossutil
           sudo mv /tmp/ossutil /usr/local/bin/ossutil
           ossutil version
