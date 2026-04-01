@@ -2,19 +2,14 @@
 import { ref, reactive } from 'vue'
 import {
   Table,
-  Button,
-  Input,
   Space,
   Tag,
   Modal,
-  Form,
-  Select,
   message,
   Avatar,
   Popconfirm,
 } from 'ant-design-vue'
 import { PlusOutlined, SearchOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons-vue'
-import type { TableProps } from 'ant-design-vue'
 
 interface UserRecord {
   id: number
@@ -166,7 +161,7 @@ const handleSubmit = async () => {
   }
 }
 
-const handleTableChange: TableProps['onChange'] = (pag) => {
+const handleTableChange = (pag: { current?: number; pageSize?: number }) => {
   pagination.current = pag.current || 1
   pagination.pageSize = pag.pageSize || 10
 }

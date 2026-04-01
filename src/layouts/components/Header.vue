@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Breadcrumb, Dropdown, Avatar, Space, Button, Badge, Tooltip } from 'ant-design-vue'
+import { Dropdown, Avatar, Space, Button, Badge, Tooltip } from 'ant-design-vue'
 import type { MenuProps } from 'ant-design-vue'
-import { BellOutlined, SettingOutlined, UserOutlined, LogoutOutlined, BulbOutlined } from '@ant-design/icons-vue'
+import { BellOutlined, BulbOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/store/user'
 import { useSettingsStore } from '@/store/settings'
 

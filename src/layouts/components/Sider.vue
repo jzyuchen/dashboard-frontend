@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, h, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { Menu } from 'ant-design-vue'
 import type { MenuProps } from 'ant-design-vue'
 import * as Icons from '@ant-design/icons-vue'
 import { usePermissionStore } from '@/store/permission'
@@ -40,7 +39,7 @@ const menuItems = computed<MenuProps['items']>(() => {
         key: item.path,
         icon: () => h(getIcon(item.meta?.icon || 'SettingOutlined')),
         label: item.meta?.title,
-        children: item.children.map(child => ({
+        children: item.children.map((child: { path: string; meta?: { title?: string } }) => ({
           key: child.path,
           label: child.meta?.title,
         })),

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, reactive, h } from 'vue'
-import { Card, List, Avatar, Tag, Button, Tabs, Empty, Space, Badge } from 'ant-design-vue'
+import { ref, h } from 'vue'
+import { Card, List, Avatar, Tag, Tabs, Empty, Space, Badge } from 'ant-design-vue'
 import {
   BellOutlined,
   CheckCircleOutlined,

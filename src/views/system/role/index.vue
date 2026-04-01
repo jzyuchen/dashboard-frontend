@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { Table, Button, Tag, Modal, Form, Input, message, Popconfirm, Card, Descriptions, Switch } from 'ant-design-vue'
-import { PlusOutlined, EditOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
-import type { TableProps } from 'ant-design-vue'
+import { Table, Button, Tag, Modal, Form, Input, message, Popconfirm, Switch } from 'ant-design-vue'
+import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons-vue'
 
 interface RoleRecord {
   id: number

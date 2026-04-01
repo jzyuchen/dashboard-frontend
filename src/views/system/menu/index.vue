@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { Tree, Button, Modal, Form, Input, Select, message, Card, Tag } from 'ant-design-vue'
+import { Tree, Button, Modal, Form, Input, message, Tag } from 'ant-design-vue'
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons-vue'
-import type { TreeProps } from 'ant-design-vue'
 
 interface MenuRecord {
   key: string
@@ -17,7 +16,6 @@ interface MenuRecord {
   children?: MenuRecord[]
 }
 
-const loading = ref(false)
 const modalVisible = ref(false)
 const modalTitle = ref('新增菜单')
 const formRef = ref()
@@ -195,7 +193,7 @@ const handleSubmit = async () => {
   }
 }
 
-const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
+const handleSelect = (selectedKeys: string[]) => {
   selectedKey.value = selectedKeys[0] as string
 }
 </script>

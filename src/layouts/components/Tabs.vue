@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Tabs, CloseCircleOutlined, ReloadOutlined } from 'ant-design-vue'
+import { Tabs } from 'ant-design-vue'
+import { CloseCircleOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import type { TabsProps } from 'ant-design-vue'
 
 const activeKey = ref('dashboard')
