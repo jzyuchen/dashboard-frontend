@@ -1,0 +1,55 @@
+name: Deploy to Aliyun OSS
+
+on:
+  push:
+    branches:
+      - main  # 当推送到 main 分支时触发
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+          
+      - name: Configure Aliyun OSS credentials
+        env:
+          ALI_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
+          ALI_ACCESS_KEY_SECRET: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+        run: |
+          cat > ~/.ossutilconfig << EOF
+          [credentials]
+          language=EN
+          accessKeyID=${ALI_ACCESS_KEY_ID}
+          accessKeySecret=${ALI_ACCESS_KEY_SECRET}
+          EOF
+          
+      - name: Deploy to Aliyun OSS
+        env:
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+        run: |
+          ossutil cp -rf dist/ oss://${OSS_BUCKET}/ --endpoint=${OSS_ENDPOINT} --force
+          
+      - name: Display website URL
+        run: |
+          echo "🎉 Deployment successful!"
+          echo "Website URL: https://${OSS_BUCKET}.${OSS_ENDPOINT}"
