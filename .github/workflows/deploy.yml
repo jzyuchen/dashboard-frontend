@@ -32,6 +32,12 @@ jobs:
         env:
           VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
           
+      - name: Install ossutil
+        run: |
+          wget -O /tmp/ossutil http://gosspublic.alicdn.com/ossutil/ossutil-linux-current64
+          chmod +x /tmp/ossutil
+          sudo mv /tmp/ossutil /usr/local/bin/ossutil
+          
       - name: Configure Aliyun OSS credentials
         env:
           ALI_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
